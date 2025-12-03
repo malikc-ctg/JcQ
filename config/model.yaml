@@ -1,0 +1,49 @@
+model:
+  type: "logistic"  # logistic, xgboost, lightgbm (auto-detected)
+  
+  logistic:
+    C: 1.0
+    class_weight: "balanced"
+    max_iter: 1000
+    random_state: 42
+  
+  calibration:
+    method: "isotonic"  # isotonic or sigmoid
+    cv: 5  # Cross-validation folds for calibration
+  
+  # XGBoost (if available)
+  xgboost:
+    n_estimators: 100
+    max_depth: 6
+    learning_rate: 0.1
+    subsample: 0.8
+    colsample_bytree: 0.8
+    random_state: 42
+  
+  # LightGBM (if available)
+  lightgbm:
+    n_estimators: 100
+    max_depth: 6
+    learning_rate: 0.1
+    subsample: 0.8
+    colsample_bytree: 0.8
+    random_state: 42
+
+features:
+  # Feature selection (all enabled by default)
+  price_volatility: true
+  vwap: true
+  opening_range: true
+  prior_session: true
+  trend: true
+  time: true
+
+training:
+  train_test_split: 0.8  # Not used in walk-forward, for single train
+  min_samples: 1000      # Minimum samples to train
+  feature_scaling: true  # Use StandardScaler
+
+persistence:
+  model_dir: "data/models"
+  version_format: "model_{run_id}_{timestamp}.joblib"
+

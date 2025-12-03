@@ -1,0 +1,25 @@
+position_sizing:
+  dollars_per_r: 100.0  # Risk $100 per 1R
+  prefer_micro: true    # Prefer MNQ over NQ when possible
+
+limits:
+  daily_max_r: 5.0      # Maximum daily realized R loss
+  max_open_risk_r: 3.0  # Maximum open position risk in R
+  max_trades_day: 10    # Maximum trades per day
+  
+  # Per-symbol limits (optional, overrides global)
+  per_symbol:
+    # NQ:
+    #   daily_max_r: 3.0
+    #   max_trades_day: 5
+
+costs:
+  slippage_ticks_per_side: 0.5  # Average slippage in ticks
+  fees_per_contract: 0.50       # Commission + fees per contract per side
+  round_trip_fees: true         # Apply fees on both entry and exit
+
+contract_specs:
+  # Defined in market.yaml, referenced here for clarity
+  # NQ: $20/point, $5/tick
+  # MNQ: $2/point, $0.50/tick
+

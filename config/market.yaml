@@ -1,0 +1,39 @@
+instruments:
+  NQ:
+    tick_size: 0.25
+    point_value: 20.0  # $20 per point
+    tick_value: 5.0    # $5 per tick
+    symbol: "NQ"
+  MNQ:
+    tick_size: 0.25
+    point_value: 2.0   # $2 per point
+    tick_value: 0.5    # $0.50 per tick
+    symbol: "MNQ"
+
+sessions:
+  timezone: "America/New_York"
+  
+  globex:
+    start: "18:00"  # Previous day
+    end: "17:00"    # Current day
+    maintenance_break_start: "17:00"  # Daily maintenance break start
+    maintenance_break_end: "18:00"    # Daily maintenance break end
+  
+  rth:
+    start: "09:30"
+    end: "16:00"
+  
+  # Trade windows (when execution is allowed)
+  trade_windows:
+    - start: "09:30"
+      end: "15:45"
+      timezone: "America/New_York"
+    # Add more windows as needed
+
+timeframes:
+  default: "1m"
+  supported: ["1m", "5m", "15m", "1h", "1d"]
+
+opening_range:
+  minutes: 30  # First 30 minutes of RTH for opening range calculation
+

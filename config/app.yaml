@@ -1,0 +1,33 @@
+app:
+  name: "JcQ"
+  version: "0.1.0"
+  timezone: "America/New_York"  # Default timezone for session logic
+  data_dir: "data"
+  models_dir: "data/models"
+  runs_dir: "data/runs"
+  logs_dir: "data/logs"
+
+database:
+  # Connection string from SUPABASE_DB_URL or DATABASE_URL env var
+  # Falls back to SQLite if not set
+  url: null  # Set via environment variable
+  pool_size: 5
+  max_overflow: 10
+  pool_timeout: 30
+  echo: false  # Set to true for SQL debugging
+
+storage:
+  parquet_enabled: true
+  supabase_storage_enabled: false  # Requires SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY
+
+logging:
+  level: "INFO"  # Overridden by LOG_LEVEL env var
+  format: "json"  # json or text
+  file: "data/logs/jcq.log"
+  rotation: "daily"
+  retention_days: 30
+
+execution:
+  enabled: false  # Overridden by EXECUTION_ENABLED env var (must be "true" string)
+  broker_type: "paper"  # paper, ibkr, tradovate (stubs provided)
+

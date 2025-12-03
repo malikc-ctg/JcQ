@@ -1,0 +1,2 @@
+"""Macro data ingestion."""
+

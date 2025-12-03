@@ -1,0 +1,66 @@
+candidates:
+  # VWAP-based candidates
+  vwap:
+    enabled: true
+    atr_multipliers: [0.5, 1.0, 1.5, 2.0]  # k values for VWAP +/- k*ATR
+  
+  # Opening range retests
+  opening_range:
+    enabled: true
+    tolerance_ticks: 2  # Ticks away from ORH/ORL to trigger
+  
+  # Prior session levels
+  prior_session:
+    enabled: true
+    tolerance_ticks: 2
+  
+  # Swing high/low (pivot-based)
+  swing:
+    enabled: true
+    pivot_lookback: 5  # Bars on each side for pivot
+    min_swing_size_atr: 1.0  # Minimum swing size in ATR
+  
+  # Risk/reward ratios
+  min_rr: 1.5  # Minimum reward:risk ratio
+  max_rr: 5.0  # Maximum reward:risk ratio (sanity check)
+
+scoring:
+  # Expected value calculation
+  use_bayesian_adjustment: true
+  bayesian_window: 100  # Bars for calibration tracking
+  
+  # Ranking
+  top_k: 5  # Top K candidates to consider
+  
+  # Model confidence thresholds
+  min_prob: 0.45  # Minimum probability to consider
+  max_prob: 0.95  # Maximum probability (avoid overconfidence)
+
+rules:
+  # Regime constraints
+  regime:
+    disable_mean_reversion_in_trend: true
+    disable_trend_following_in_choppy: false
+  
+  # Volatility gates
+  volatility:
+    min_atr_percentile: 10  # Minimum ATR percentile to trade
+    max_atr_percentile: 90  # Maximum ATR percentile to trade
+  
+  # News/event blackouts (placeholder - implement schedule logic)
+  blackouts:
+    enabled: false
+    schedules: []  # List of {start: "HH:MM", end: "HH:MM", timezone: "..."}
+  
+  # Time-based filters
+  time_filters:
+    avoid_first_minutes: 5  # Avoid first N minutes of session
+    avoid_last_minutes: 5   # Avoid last N minutes of session
+
+labels:
+  horizon_bars: 20  # Bars forward for horizon return
+  threshold_return: 0.001  # 0.1% return threshold for binary label
+  triple_barrier:
+    enabled: false  # Placeholder for future implementation
+    pt_sl: [0.002, 0.001]  # Profit target and stop loss in returns
+
